@@ -3,6 +3,37 @@
 //Create an interface Listing that will represent an object
 //from the listings array below to resolve the type error.
 
+interface Listing {
+  id: string;
+  price: string;
+  address: string;
+  isSold?: boolean;
+  currentOwner?: string;
+  postalCode: string;
+  MLSnumber: string;
+  photo: string;
+  description: string;
+  propertySummary: {
+    propertyType: string;
+    buildingType: string;
+    storeys: string;
+    title: string;
+    builtIn: string;
+    taxes: string;
+    parking: string;
+  };
+  buildingSummary: {
+    bedrooms: string;
+    bathrooms: string;
+    buildingFeatures: string[];
+    cooling: string;
+    heating: string;
+    sewer: string;
+    water: string;
+    size: string;
+  }
+};
+
 const listings: Listing[] = [
   {
     id: "10100",
@@ -482,6 +513,9 @@ const listings: Listing[] = [
  */
 //WRITE YOUR CODE BELOW
 
+let listing0: Listing = listings[0];
+console.log(listing0);
+
 /**
  * Task-3:
  * Create an object named listing0Updated of type Listing
@@ -494,6 +528,8 @@ const listings: Listing[] = [
  * Make sure to add them as OPTIONAL properties
  */
 //WRITE YOUR CODE BELOW
+
+let listing0Updated: Listing = { ...listing0, isSold: false, currentOwner: "Jane Doe"};
 
 /**
  * NOTE: THIS TASK IS TRICKY!
@@ -512,9 +548,17 @@ const listings: Listing[] = [
  */
 //WRITE YOUR CODE BELOW
 
+function realtorFees(listing: Listing): fees {
+  const price = parseInt(listing.price.replace("$", "").replace(",", ""));
+
+  return price <= 450000 ? price * 0.025 : price * 0.02;
+}
+
+console.log(realtorFees(listings[15]));
+
 console.log(parseInt((listings[2].price).replace("$", "").replace(",","")) * 0.02);
 
-// more than 450 * by 0.02 - less than 450,000 * 0.025
+// more than 450,000 * by 0.02 - less than 450,000 * 0.025
 
 /**
  * Task-5:
@@ -522,6 +566,16 @@ console.log(parseInt((listings[2].price).replace("$", "").replace(",","")) * 0.0
  * according to their built year
  */
 //WRITE YOUR CODE BELOW
+
+const listingAscendingly = [...listings].sort((listingA, listingB) => 
+  parseInt(listingA.propertySummary.builtIn) - 
+parseInt(listingB.propertySummary.builtIn));
+
+console.log(listingAscendingly);
+
+const builtInYear = listingAscendingly.map((year) => year.propertySummary.builtIn);
+
+console.log(builtInYear);
 
 /**
  * Task-6:
@@ -531,3 +585,9 @@ console.log(parseInt((listings[2].price).replace("$", "").replace(",","")) * 0.0
  * This array should result in two listings only
  */
 //WRITE YOUR CODE BELOW
+
+const townhouseListings = listings.filter((listing) => {
+  return listing.propertySummary.buildingType === "Townhouse";
+});
+
+console.log(townhouseListings)
