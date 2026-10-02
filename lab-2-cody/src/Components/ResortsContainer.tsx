@@ -8,8 +8,8 @@ interface ResortsContainerProps {
 export default function ResortsContainer({data}:ResortsContainerProps){
     return (
         <div className="ResortsContainer">
-            {data.map((list) => (
-            <ResortsLite key={list.id} {...list} />
+            {data.map((listing) => (
+            <ResortsLite key={listing.id} {...listing} />
             ))}
         </div>
     )

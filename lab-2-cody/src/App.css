@@ -184,3 +184,35 @@
 }
 
 
+.ResortsLite {
+  padding: 10px;
+  margin: 10px;
+}
+
+.info {
+  text-align: left;
+}
+
+#resortName {
+  font-style: italic;
+}
+
+.ResortsContainer {
+  display: flex;
+  justify-content: space-around;
+}
+
+@media (max-width: 600px) {
+  .ResortsContainer {
+    flex-direction: column;
+  }
+
+  .ResortsLite {
+    display: flex;
+    width: 90%;
+    justify-content: space-around;
+    align-items: center;
+    margin: 10px auto;
+  }
+  
+}

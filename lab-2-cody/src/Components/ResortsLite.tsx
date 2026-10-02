@@ -9,17 +9,17 @@ export default function ResortsLite({
 }:ResortsLiteProps) {
 
     return <div className="ResortsLite">
-        <img src={image} alt="" width="200px" />
+        <img src={image} alt="" width="160px" />
 
+        <div className="info" >
         <h2>{location}</h2>
         
-        <p>{resortName}</p>
+        <p id="resortName" >{resortName}</p>
 
-        <p>{rating}</p>
+        <p style={rating > 4.0 ? {color: "green"} : {color: "red"}} >{rating}★</p>
 
-        <p>{price}</p>
+        <p style={{color: "pink", fontWeight: "bolder"}} >${price}/night</p>
+        </div>
 
-        {/* <p style={{color: "red", fontWeight: "bolder"}}> 
-            {props.sale && "ON SALE"}</p> */}
     </div>
 }
